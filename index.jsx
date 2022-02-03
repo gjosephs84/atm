@@ -5,7 +5,7 @@ const ATMDeposit = ({ onChange, isDeposit, isValid, isMessage }) => {
         <h3> {choice[Number(!isDeposit)]}</h3>
         <input id="number-input" type="number" width="200" onChange={onChange} placeholder="Enter an amount"></input>
         <input type="submit" disabled={!isValid} width="200" value="Submit" id="submit-input"></input>
-        {!isValid && <div>{isMessage}
+        {!isValid && <div className="message">{isMessage}
             </div>}
       </label>
     );
@@ -28,6 +28,7 @@ const ATMDeposit = ({ onChange, isDeposit, isValid, isMessage }) => {
       if (atmMode === 'Cash Back' && Number(event.target.value) > totalState) {
         setValidTransaction(false);
         setMessage("The current amount exceeds the available balance");
+        
       } else {
         setValidTransaction(true);
       }
@@ -56,7 +57,7 @@ const ATMDeposit = ({ onChange, isDeposit, isValid, isMessage }) => {
   
     return (
         <>
-        <div>
+        <div className="main">
             <form onSubmit={handleSubmit}>
                 <h2 id="total">{status}</h2>
                 <select onChange={(e) => handleModeSelect(e)} name="mode" id="mode-select" placeholder="Select an action to continue">
